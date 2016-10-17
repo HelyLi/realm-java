@@ -164,7 +164,7 @@ public class ObjectServerUser {
         ObjectServerUser syncUser = (ObjectServerUser) o;
 
         if (!identity.equals(syncUser.identity)) return false;
-        if (!refreshToken.equals(syncUser.refreshToken)) return false;
+        if (!refreshToken.equals(syncUser.refreshToken)) return false; // FIXME this line can cause NPE
         if (!authenticationUrl.toString().equals(syncUser.authenticationUrl.toString())) return false;
         return realms.equals(syncUser.realms);
 
@@ -173,7 +173,7 @@ public class ObjectServerUser {
     @Override
     public int hashCode() {
         int result = identity.hashCode();
-        result = 31 * result + refreshToken.hashCode();
+        result = 31 * result + refreshToken.hashCode(); // FIXME this line can cause NPE
         result = 31 * result + authenticationUrl.toString().hashCode();
         result = 31 * result + realms.hashCode();
         return result;
